@@ -1,23 +1,50 @@
-import React, { useState } from 'react';
+import axios from "axios";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useAuth } from "../contexts/AuthContext";
 
 function LoginForm() {
   const [form, setForm] = useState({
-    username: '',
-    password: '',
+    username: "",
+    password: "",
   });
+
+  const { login } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    //console.log(form);
+    login(form);
   };
 
-  const handleChange = (e) => {};
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   return (
-    <div>
-      <div className="loginFormMainDiv">
-        <h1>LOGIN</h1>
-        <p>TODO: Form buraya gelecek</p>
-      </div>
+    <div className="loginFormMainDiv">
+      <h1>LOGIN</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <input
+            name="username"
+            type="text"
+            placeholder="Username"
+            value={form.username}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
+          />
+        </div>
+        <button type="submit">SUBMIT</button>
+      </form>
     </div>
   );
 }

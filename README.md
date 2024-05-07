@@ -7,8 +7,8 @@ Kendi de bir şeyler yapmaya başlamış ama tam tamamlayamamış. Senden de eks
 
 ADIM 1: Routing ekle.
 
-[ ] main.jsx dosyasında uygulamayı BrowserRouter ile sarmala.
-[ ] App.jsxde routeları ekle.
+[ x] main.jsx dosyasında uygulamayı BrowserRouter ile sarmala.
+[ x] App.jsxde routeları ekle.
 [ ] /friends FriendsList componentini render etsin.
 [ ] /login LoginForm componetini render etsin.
 [ ] /friends/add AddForm componentini render etsin.

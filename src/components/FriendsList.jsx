@@ -1,7 +1,32 @@
-import { useState } from 'react';
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext, useAuth } from "../contexts/AuthContext";
 
-export default function FriendsList(props) {
+export default function FriendsList() {
   const [friends, setFriends] = useState([]);
+  const { loggedInUser, isUserLoggedIn } = useAuth();
+  console.log("userlog : ", loggedInUser);
+  console.log("token : ", loggedInUser.token);
+
+  console.log("isUserLoggedIn1 : ", isUserLoggedIn);
+  const token =
+    "ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98"; //loggedInUser.token;
+
+  useEffect(() => {
+    if (isUserLoggedIn) {
+      axios
+        .get("https://nextgen-project.onrender.com/api/s11d2/friends", {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((res) => {
+          setFriends(res.data);
+          console.log(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [isUserLoggedIn, loggedInUser]);
 
   return (
     <div className="friendListDiv">

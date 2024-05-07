@@ -1,8 +1,8 @@
-import { createContext, useContext, useState } from 'react';
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { createContext, useContext, useState } from "react";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-import useLocalStorage from '../hooks/useLocalStorage';
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
@@ -10,17 +10,17 @@ export const useAuth = () => useContext(AuthContext);
 export default function AuthContextProvider({ children }) {
   const history = useHistory();
 
-  const LSKey = 's11d2';
+  const LSKey = "s11d2";
   const [loggedInUser, setLoggedInUser] = useLocalStorage(LSKey, {});
-  const [apiError, setApiError] = useLocalStorage('apiErr', null);
+  const [apiError, setApiError] = useLocalStorage("apiErr", null);
 
-  const isUserLoggedIn = loggedInUser.hasOwnProperty('token');
+  const isUserLoggedIn = loggedInUser.hasOwnProperty("token");
   const login = (loginInfo) => {
     axios
-      .post('https://nextgen-project.onrender.com/api/s11d2/login', loginInfo)
+      .post("https://nextgen-project.onrender.com/api/s11d2/login", loginInfo)
       .then(function (response) {
         // console.log(response);
-        history.push('/friends');
+        history.push("/friends");
         setLoggedInUser(response.data);
         setApiError(null);
       })
@@ -31,7 +31,7 @@ export default function AuthContextProvider({ children }) {
   };
 
   const logOut = () => {
-    history.push('/');
+    history.push("/");
     setLoggedInUser({});
   };
 

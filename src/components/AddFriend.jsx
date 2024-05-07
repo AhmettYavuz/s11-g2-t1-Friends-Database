@@ -1,32 +1,36 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import React from "react";
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { useAuth } from "../contexts/AuthContext";
 
 function AddFriend() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: 'onChange' });
+  } = useForm({ mode: "onChange" });
 
-  const token = 'TODO: token loginden gelecek.';
-
+  const { loggedInUser } = useAuth();
+  const token = loggedInUser.token;
+  console.log(loggedInUser);
+  console.log(token);
   const history = useHistory();
+
   const addFriendSubmit = (data) => {
     const postData = { ...data, age: Number(data.age) };
     const config = {
-      method: 'post',
-      url: 'https://nextgen-project.onrender.com/api/s11d2/friends',
+      method: "post",
+      url: "https://nextgen-project.onrender.com/api/s11d2/friends",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: token,
       },
       data: JSON.stringify(postData),
     };
     axios(config)
       .then(function (response) {
-        history.push('/friends');
+        history.push("/friends");
       })
       .catch(function (error) {
         console.log(error);
@@ -41,7 +45,7 @@ function AddFriend() {
           <input
             type="text"
             placeholder="name"
-            {...register('name', { required: 'Ama adın ne?' })}
+            {...register("name", { required: "Ama adın ne?" })}
           />
           {errors?.name && <p>{errors.name.message}</p>}
         </div>
@@ -49,8 +53,8 @@ function AddFriend() {
           <input
             type="email"
             placeholder="email"
-            {...register('email', {
-              required: 'Epostanı ver  ki spamlayalım.',
+            {...register("email", {
+              required: "Epostanı ver  ki spamlayalım.",
             })}
           />
           {errors?.email && <p>{errors.email.message}</p>}
@@ -59,8 +63,8 @@ function AddFriend() {
           <input
             type="number"
             placeholder="age"
-            {...register('age', {
-              required: 'yaş kaç',
+            {...register("age", {
+              required: "yaş kaç",
             })}
           />
           {errors?.age && <p>{errors.age.message}</p>}
