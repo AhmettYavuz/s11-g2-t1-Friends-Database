@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useAuth } from "../contexts/AuthContext";
 
 function LoginForm() {
@@ -13,7 +12,7 @@ function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //console.log(form);
+    console.log(form);
     login(form);
   };
 

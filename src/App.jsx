@@ -17,13 +17,13 @@ function App() {
           <PrivateRoute exact path="/">
             <FriendsList />
           </PrivateRoute>
-          <Route exact path="/login">
+          <Route path="/login">
             <LoginForm />
           </Route>
-          <PrivateRoute exact path="/friends ">
+          <PrivateRoute exact path="/friends">
             <FriendsList />
           </PrivateRoute>
-          <PrivateRoute exact path="/friends/add">
+          <PrivateRoute path="/friends/add">
             <AddFriend />
           </PrivateRoute>
         </Switch>

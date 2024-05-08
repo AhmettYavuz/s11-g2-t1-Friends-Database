@@ -20,7 +20,7 @@ ADIM 2: LoginForm componentini oluştur.
 [ ] password inputunda placeholder Password olsun.
 [ ] submit butonunda metin olarak SUBMIT yazsın.
 [ ] Form submit edildiğinde https://nextgen-project.onrender.com/api/s11d2/logine form datasını POST etsin.
-[ ] Test için username: workintech ve password:wecandoiti kullan.
+[ ] Test için username: workintech ve password: wecandoit i kullan.
 ADIM 3: AuthContext oluştur.
 
 [ ] contexts klasörü yaratıp içinde AuthContext.jsx dosyası oluştur.

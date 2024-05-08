@@ -19,7 +19,7 @@ export default function AuthContextProvider({ children }) {
     axios
       .post("https://nextgen-project.onrender.com/api/s11d2/login", loginInfo)
       .then(function (response) {
-        // console.log(response);
+        console.log(response);
         history.push("/friends");
         setLoggedInUser(response.data);
         setApiError(null);
@@ -31,11 +31,11 @@ export default function AuthContextProvider({ children }) {
   };
 
   const logOut = () => {
-    history.push("/");
     setLoggedInUser({});
+    history.push("/login");
   };
 
-  // console.log('CONTETETN SELAMLAR', isUserLoggedIn);
+  console.log("CONTETETN SELAMLAR", isUserLoggedIn);
 
   return (
     <AuthContext.Provider
